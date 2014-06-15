@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +19,147 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
+		
+	<script>
+		var testData={"sender":{"count":1,"first":0,"searchonly":false,"records":[{"name":"Dipl. Phys. Peter Bonanati","firstname":"Peter","surname":"Bonanati","prefix":"Dipl. Phys.","organization":"Universität Tübingen","department":"IPC - AG Weimar","birthday":"1983-02-23","uid":"00000000520C971F0B4BC54DB80796D6D8A174AD0100D55DC2685850C545B986B30DABB5F61C0000000190930000","changed":{"date":"2014-05-14 11:30:16","timezone_type":3,"timezone":"UTC"},"ID":"MDAwMDAwMDA1MjBDOTcxRjBCNEJDNTREQjgwNzk2RDZEOEExNzRBRDAxMDBENTVEQzI2ODU4NTBDNTQ1Qjk4NkIzMERBQkI1RjYxQzAwMDAwMDAxOTA5MzAwMDA","email:work":["peter.bonanati@ipc.uni-tuebingen.de"],"email:other":["peter.stueber@ipc.uni-tuebingen.de"],"phone:home":["070715668956"],"phone:mobile":["01633628843"],"phone:work":["07071-29-77633"],"phone:workfax":["07071-29-5963"],"address:work":[{"street":"Memelweg 9","locality":"Tübingen","zipcode":"72072","region":null,"country":"Germany"}]}]},"recipient":{"count":1,"first":0,"searchonly":false,"records":[{"name":"Dipl. Phys. Peter Bonanati","firstname":"Peter","surname":"Bonanati","prefix":"Dipl. Phys.","organization":"Universität Tübingen","department":"IPC - AG Weimar","birthday":"1983-02-23","uid":"00000000520C971F0B4BC54DB80796D6D8A174AD0100D55DC2685850C545B986B30DABB5F61C0000000190930000","changed":{"date":"2014-05-14 11:30:16","timezone_type":3,"timezone":"UTC"},"ID":"MDAwMDAwMDA1MjBDOTcxRjBCNEJDNTREQjgwNzk2RDZEOEExNzRBRDAxMDBENTVEQzI2ODU4NTBDNTQ1Qjk4NkIzMERBQkI1RjYxQzAwMDAwMDAxOTA5MzAwMDA","email:work":["peter.bonanati@ipc.uni-tuebingen.de"],"email:other":["peter.stueber@ipc.uni-tuebingen.de"],"phone:home":["070715668956"],"phone:mobile":["01633628843"],"phone:work":["07071-29-77633"],"phone:workfax":["07071-29-5963"],"address:work":[{"street":"Memelweg 9","locality":"Tübingen","zipcode":"72072","region":null,"country":"Germany"}],"sourceid":"SharedFolders_shared_ipc_intern"}]},"event":"plugin.ipc_brief.created"};
+		
+	</script>
+		
+       
+		        
+				<input id="clickMe" type="button" value="Fill with test data" onclick="fillForm(testData);" />
+				
+				<input id="clickMe" type="button" value="Send Alex Test Data" onclick="sendTestData(testData);" />
+
+				
+				<form action="" method="post" id='Brief'>
+					
+					Type:
+					<select size=3 name="letterData.type">
+						<option value="IPC" selected="selected">IPC</option>
+						<option value="AO">AO</option>
+						<option value="STZ">STZ</option>
+					</select>
+					
+					<br/>
+					Language:
+					<select size=2 name="letterData.language" value="german">
+						<option value="german" selected="selected">German</option>
+						<option value="english">English</option>
+					</select>
+		
+		<div id="wrap">		
+			<div id="left_col">
+				<h2>From</h2>
+
+					Search:
+					<input type="text" name="searchFrom" id="searchFrom" maxlength="12" size="12"/>
+					<br/>
+					
+					<br/>
+
+					Company Name:
+					<input type="text" name="fromData.CompanyName" maxlength="12" size="12"/>
+					<br/>
+					
+					Department Name:
+					<input type="text" name="fromData.Department" maxlength="12" size="12"/>
+					<br/>
+
+
+					Title:
+					<input type="text" name="fromData.Title" maxlength="12" size="12"/>
+					<br/>
+					First Name:
+					<input type="text" name="fromData.FirstName" maxlength="12" size="12"/>
+					<br/>
+					Last Name:
+					<input type="text" name="fromData.LastName" maxlength="36" size="12"/>
+					<br/>
+					
+					Street:
+					<input type="text" name="fromData.Street" maxlength="36" size="12"/>
+					<br/>
+					
+					Zip:
+					<input type="text" name="fromData.Zip" maxlength="36" size="12"/>
+					<br/>
+					
+					City:
+					<input type="text" name="fromData.City" maxlength="36" size="12"/>
+					<br/>
+
+					Email:
+					<input type="text" name="fromData.EMail" maxlength="36" size="12"/>
+					<br/>
+
+					
+			</div>
+			
+		
+			<div id="right_col">
+				<h2>To</h2>
+
+
+					Company Name:
+					<input type="text" name="toData.CompanyName" maxlength="12" size="12"/>
+					<br/>
+					
+					Department Name:
+					<input type="text" name="toData.Department" maxlength="12" size="12"/>
+					<br/>
+
+
+					Title:
+					<input type="text" name="toData.Title" maxlength="12" size="12"/>
+					<br/>
+					First Name:
+					<input type="text" name="toData.FirstName" maxlength="12" size="12"/>
+					<br/>
+					Last Name:
+					<input type="text" name="toData.LastName" maxlength="36" size="12"/>
+					<br/>
+					
+					Street:
+					<input type="text" name="toData.Street" maxlength="36" size="12"/>
+					<br/>
+					
+					Zip:
+					<input type="text" name="toData.Zip" maxlength="36" size="12"/>
+					<br/>
+					
+					City:
+					<input type="text" name="toData.City" maxlength="36" size="12"/>
+					<br/>
+
+					Email:
+					<input type="text" name="toData.EMail" maxlength="36" size="12"/>
+					<br/>
+		
+			</div>
+		</div>
+					<p>
+						<input type="submit" />
+					</p>
+				
+				</form>
+				
+				
+				<h2>JSON</h2>
+				<pre id="result">
+		</pre>		
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
@@ -35,5 +175,6 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script>
+        
     </body>
 </html>

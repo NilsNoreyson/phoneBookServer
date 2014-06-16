@@ -24,6 +24,9 @@ app = Flask(__name__, static_url_path='')
 
 @app.route('/')
 def hello_world():
+    a={5:'was geht',
+       0:"90's best"}
+    return jsonify(a)
     return 'Hello World!'
 
 @app.route('/createLetter',methods=['POST'])

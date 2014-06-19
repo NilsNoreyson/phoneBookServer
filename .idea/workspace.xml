@@ -35,7 +35,7 @@
       <file leaf-file-name="Flask2.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Flask2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="0" selection-start="1017" selection-end="1017" vertical-scroll-proportion="0.57840616" vertical-offset="450" max-vertical-offset="1650">
+            <state line="34" column="61" selection-start="800" selection-end="800" vertical-scroll-proportion="0.15424165" vertical-offset="450" max-vertical-offset="1650">
               <folding>
                 <element signature="e#86#140#0" expanded="true" />
               </folding>
@@ -381,7 +381,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3290938" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3290938" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -502,7 +502,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Flask2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="0" selection-start="1017" selection-end="1017" vertical-scroll-proportion="0.57840616" vertical-offset="450" max-vertical-offset="1650">
+        <state line="34" column="61" selection-start="800" selection-end="800" vertical-scroll-proportion="0.15424165" vertical-offset="450" max-vertical-offset="1650">
           <folding>
             <element signature="e#86#140#0" expanded="true" />
           </folding>

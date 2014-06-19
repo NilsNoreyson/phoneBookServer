@@ -32,7 +32,7 @@ telefonBuch={9: 'Toystore',
 
 def save_to_pickle():
     pickle.dump(telefonBuch, open( fileName+'.pkl', "wb" ) )
-    date_str=datetime.datetime.now().strftime('%Y-%M-%d_%H-%m')
+    date_str=datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')
     pickle.dump(telefonBuch, open( fileName+"_"+date_str+'_.pkl', "wb" ) )
     return
 

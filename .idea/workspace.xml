@@ -35,7 +35,7 @@
       <file leaf-file-name="Flask2.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Flask2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="61" selection-start="800" selection-end="800" vertical-scroll-proportion="0.15424165" vertical-offset="450" max-vertical-offset="1650">
+            <state line="84" column="0" selection-start="1848" selection-end="1848" vertical-scroll-proportion="0.038560413" vertical-offset="1245" max-vertical-offset="1860">
               <folding>
                 <element signature="e#86#140#0" expanded="true" />
               </folding>
@@ -75,7 +75,7 @@
       <file leaf-file-name="mpd_comm.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mpd_comm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="18" selection-start="699" selection-end="699" vertical-scroll-proportion="0.0" vertical-offset="361" max-vertical-offset="840">
+            <state line="23" column="35" selection-start="524" selection-end="524" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="855">
               <folding>
                 <element signature="e#23#36#0" expanded="true" />
               </folding>
@@ -147,38 +147,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="phoneBookServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phoneBookServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phoneBookServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phoneBookServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phoneBookServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -493,7 +461,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mpd_comm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="18" selection-start="699" selection-end="699" vertical-scroll-proportion="0.0" vertical-offset="361" max-vertical-offset="840">
+        <state line="23" column="35" selection-start="524" selection-end="524" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="855">
           <folding>
             <element signature="e#23#36#0" expanded="true" />
           </folding>
@@ -502,7 +470,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Flask2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="61" selection-start="800" selection-end="800" vertical-scroll-proportion="0.15424165" vertical-offset="450" max-vertical-offset="1650">
+        <state line="84" column="0" selection-start="1848" selection-end="1848" vertical-scroll-proportion="0.038560413" vertical-offset="1245" max-vertical-offset="1860">
           <folding>
             <element signature="e#86#140#0" expanded="true" />
           </folding>

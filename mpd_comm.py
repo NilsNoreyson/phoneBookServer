@@ -19,7 +19,7 @@ def get_playlists_from_mpd():
     client.disconnect()
     return playlists
 
-def load_playlist(name):
+def play_playlist(name):
     client=MPDClient()
     mopidyAddress = '192.168.13.13'
     mopidyPort = 6600
@@ -30,6 +30,7 @@ def load_playlist(name):
     client.password('IlPits2013')
     client.clear()
     client.load(name)
+    client.play(name)
     client.disconnect()
     return
 

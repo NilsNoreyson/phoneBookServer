@@ -35,112 +35,16 @@
 -->
 
 				
-				<form action="" method="post" id='Brief'>
+				<form action="set_number" method="post" id='playlist_number'>
 					<br/>
 					Playlist
-					<select name="playlist">
-						<option value="IPC" selected="selected">IPC</option>
-						<option value="AO">AO</option>
-						<option value="STZ">STZ</option>
+					<br/>
+					<input type="number" name="number_input"  maxlength="12" size="5"/>
+					<select id="playlist_select" name="playlist_input" width="300" style="width: 300px">
+
 					</select>
 					
-					<br/>
-					Language:
-					<select size=2 name="letterData.language" value="german">
-						<option value="german" selected="selected">German</option>
-						<option value="english">English</option>
-					</select>
-		
-		<div id="wrap">		
-			<div id="left_col">
-				<h2>From</h2>
-
-					Search:
-					<input type="text" name="searchFrom" id="searchFrom" maxlength="12" size="12"/>
-					<br/>
 					
-					<br/>
-
-					Company Name:
-					<input type="text" name="fromData.CompanyName" maxlength="12" size="12"/>
-					<br/>
-					
-					Department Name:
-					<input type="text" name="fromData.Department" maxlength="12" size="12"/>
-					<br/>
-
-
-					Title:
-					<input type="text" name="fromData.Title" maxlength="12" size="12"/>
-					<br/>
-					First Name:
-					<input type="text" name="fromData.FirstName" maxlength="12" size="12"/>
-					<br/>
-					Last Name:
-					<input type="text" name="fromData.LastName" maxlength="36" size="12"/>
-					<br/>
-					
-					Street:
-					<input type="text" name="fromData.Street" maxlength="36" size="12"/>
-					<br/>
-					
-					Zip:
-					<input type="text" name="fromData.Zip" maxlength="36" size="12"/>
-					<br/>
-					
-					City:
-					<input type="text" name="fromData.City" maxlength="36" size="12"/>
-					<br/>
-
-					Email:
-					<input type="text" name="fromData.EMail" maxlength="36" size="12"/>
-					<br/>
-
-					
-			</div>
-			
-		
-			<div id="right_col">
-				<h2>To</h2>
-
-
-					Company Name:
-					<input type="text" name="toData.CompanyName" maxlength="12" size="12"/>
-					<br/>
-					
-					Department Name:
-					<input type="text" name="toData.Department" maxlength="12" size="12"/>
-					<br/>
-
-
-					Title:
-					<input type="text" name="toData.Title" maxlength="12" size="12"/>
-					<br/>
-					First Name:
-					<input type="text" name="toData.FirstName" maxlength="12" size="12"/>
-					<br/>
-					Last Name:
-					<input type="text" name="toData.LastName" maxlength="36" size="12"/>
-					<br/>
-					
-					Street:
-					<input type="text" name="toData.Street" maxlength="36" size="12"/>
-					<br/>
-					
-					Zip:
-					<input type="text" name="toData.Zip" maxlength="36" size="12"/>
-					<br/>
-					
-					City:
-					<input type="text" name="toData.City" maxlength="36" size="12"/>
-					<br/>
-
-					Email:
-					<input type="text" name="toData.EMail" maxlength="36" size="12"/>
-					<br/>
-		
-			</div>
-		</div>
 					<p>
 						<input type="submit" />
 					</p>

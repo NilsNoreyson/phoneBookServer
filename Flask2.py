@@ -42,7 +42,7 @@ def load_phoneBook():
     return telefonBuch
 
 
-
+#save_to_pickle()
 telefonBuch=load_phoneBook()
 
 topPath=os.path.dirname(os.path.realpath(__file__))

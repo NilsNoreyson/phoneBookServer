@@ -84,11 +84,25 @@ def set_number():
         number=int(request.form['number_input'])
         print number,name
         telefonBuch[number]=name
-        load_playlist(name)
         save_to_pickle()
     except:
         pass
     return app.send_static_file('index.html')
+
+
+@app.route('/play_number/<number>')
+def play_number(number):
+    try:
+        number=int(number)
+        if telefonBuch.has_key(number):
+            name=telefonBuch[number]
+            print number,name
+            play_playlist(name)
+    except:
+        pass
+    return name
+
+#
 
 @app.route('/get_playlists')
 def get_playlists():

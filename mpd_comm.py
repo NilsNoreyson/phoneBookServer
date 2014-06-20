@@ -4,7 +4,7 @@ import serial
 import datetime
 from mpd import MPDClient
 from flask import Flask,jsonify
-
+import time
 
 def get_playlists_from_mpd():
     client=MPDClient()
@@ -30,7 +30,8 @@ def play_playlist(name):
     client.password('IlPits2013')
     client.clear()
     client.load(name)
-    client.play(name)
+    time.sleep(1)
+    client.play()
     client.disconnect()
     return
 

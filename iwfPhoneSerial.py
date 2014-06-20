@@ -57,7 +57,7 @@ def play_by_number(number):
         pass
 
 
-play_by_number(3)
+#play_by_number(3)
 
 serialName=get_USBPort_name()
 if serialName:
@@ -80,7 +80,7 @@ vol=getVol()
 
 
 last_number_time=datetime.datetime.now()
-dail_timeout=2
+dail_timeout=3
 number=0
 newDail=False
 

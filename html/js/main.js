@@ -16,3 +16,12 @@ $.getJSON( "get_playlists", function( data ) {
     console.log(data.length)
     fill_playlist_selection(data);
     });
+
+ $.ajax({
+    type: "GET",
+    url: "get_phonebook",
+      success: function(data){
+
+             $("#phonebook").html(data);
+           }
+    });

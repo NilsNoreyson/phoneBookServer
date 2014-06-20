@@ -264,3 +264,11 @@ textarea {
         page-break-after: avoid;
     }
 }
+
+#playlist_select{
+ width:300px;
+}
+
+#playlist_select option{
+     width:300px;
+    }

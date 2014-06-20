@@ -29,6 +29,7 @@ telefonBuch={9: 'Toystore',
              333:'Streets',
 
             }
+playlists=[]
 
 def save_to_pickle():
     pickle.dump(telefonBuch, open( fileName+'.pkl', "wb" ) )
@@ -97,7 +98,10 @@ def play_number(number):
         if telefonBuch.has_key(number):
             name=telefonBuch[number]
             print number,name
-            play_playlist(name)
+            try:
+                play_playlist(name)
+            except:
+                pass
     except:
         pass
     return name
@@ -106,7 +110,11 @@ def play_number(number):
 
 @app.route('/get_playlists')
 def get_playlists():
-    playlists=get_playlists_from_mpd()
+    global playlists
+    try:
+        playlists=get_playlists_from_mpd()
+    except:
+        pass
     just_namelist=[p['playlist'] for p in playlists]
 
     print(just_namelist)

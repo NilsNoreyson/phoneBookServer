@@ -31,6 +31,7 @@ def play_playlist(name):
     client.clear()
     client.load(name)
     time.sleep(1)
+    client.setvol(50)
     client.play()
     client.disconnect()
     return

@@ -1,9 +1,12 @@
+#!/root/PhoneBookProject/venv/bin/python
+
 # -*- coding: utf-8 -*-
 """
 Created on Tue May 13 14:28:23 2014
 
 @author: peterb
 """
+
 
 from flask import Flask,jsonify,request, make_response
 import os
@@ -93,20 +96,18 @@ def set_number():
 
 @app.route('/play_number/<number>')
 def play_number(number):
-    try:
         number=int(number)
         if telefonBuch.has_key(number):
             name=telefonBuch[number]
-            print number,name
+            name=name.encode('utf-8',errors='ignore')
+            print name
+            print number
             try:
                 play_playlist(name)
             except:
+                return('play fail')
                 pass
-    except:
-        pass
-    return name
-
-#
+            return name
 
 @app.route('/get_playlists')
 def get_playlists():

@@ -126,10 +126,9 @@ def play_number(number):
 def get_playlists():
     global playlists
     try:
-        playlists=get_playlists_from_mpd()
+        just_namelist=get_playlists_from_mpd()
     except:
         pass
-    just_namelist=[p['playlist'] for p in playlists]
 
     #print(just_namelist)
     return json.dumps(just_namelist)

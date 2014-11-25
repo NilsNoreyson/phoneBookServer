@@ -39,8 +39,10 @@ def play_playlist(name):
     else:
         add_spotify_directory(name)
     time.sleep(1)
-    client.setvol(50)
-    client.shuffle()
+    if name == 'Pierre':
+        client.shuffle()
+
+    client.setvol(50)    
     client.play()
     client.disconnect()
     return

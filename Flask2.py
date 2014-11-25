@@ -1,5 +1,3 @@
-#!/root/PhoneBookProject/venv/bin/python
-
 # -*- coding: utf-8 -*-
 """
 Created on Tue May 13 14:28:23 2014

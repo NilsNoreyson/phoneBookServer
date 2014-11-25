@@ -36,7 +36,8 @@ def play_playlist(name):
     client.clear()
     if playlist_exists(name):
         client.load(name)
-    else:
+    spotify_lists = get_spotify_playlists()
+    if name in spotify_lists:
         add_spotify_directory(name)
     time.sleep(1)
     client.setvol(50)
@@ -108,6 +109,6 @@ if __name__=='__main__':
     #
     # for t in tracks:
     #     print t['title']
-
+    play_playlist('Pierre')
 
 

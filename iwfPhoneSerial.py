@@ -52,7 +52,7 @@ def getVol():
 
 def play_by_number(number):
     try:
-        resp=urllib2.urlopen('http://192.168.13.31:8080/play_number/%i'%number)
+        resp=urllib2.urlopen('http://192.168.13.13:8080/play_number/%i'%number)
         name=resp.readline().decode()
         print(number,name)
     except:

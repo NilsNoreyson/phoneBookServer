@@ -43,11 +43,19 @@ def save_to_pickle():
 
 def load_phoneBook():
     telefonBuch=pickle.load( open( fileName+'.pkl', "rb" ) )
+    testKey=telefonBuch.keys()[0]
+    for k in telefonBuch.keys():
+        if isinstance(telefonBuch[k],dict):
+            pass
+    else:
+        telefonBuch[k]={'name':telefonBuch[k]}
+        
     return telefonBuch
 
 
 #save_to_pickle()
 telefonBuch=load_phoneBook()
+print(telefonBuch)
 
 topPath=os.path.dirname(os.path.realpath(__file__))
 
@@ -63,7 +71,7 @@ def index():
 
 @app.route('/get_phonebook')
 def get_telefonBuch():
-    return "".join(["%i - %s<br/>"%(k,telefonBuch[k]) for k in sorted(telefonBuch.keys())])
+    return "".join(["%i - %s<br/>"%(k,telefonBuch[k]['name']) for k in sorted(telefonBuch.keys())])
 
     return jsonify(telefonBuch)
 
@@ -77,6 +85,7 @@ def remove_number(number):
             pass
     except:
         pass
+
     return app.send_static_file('index.html')
 
 
@@ -86,10 +95,14 @@ def set_number():
     try:
         name=request.form['playlist_input']
         number=int(request.form['number_input'])
+        #shuffle=request.form['shuffle']
         print number,name
-        telefonBuch[number]=name
+        #print shuffle
+
+        telefonBuch[number]={'name':name}
         save_to_pickle()
     except:
+        print('set fail')
         pass
     return app.send_static_file('index.html')
 
@@ -118,7 +131,7 @@ def get_playlists():
         pass
     just_namelist=[p['playlist'] for p in playlists]
 
-    print(just_namelist)
+    #print(just_namelist)
     return json.dumps(just_namelist)
 
 

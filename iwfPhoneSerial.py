@@ -29,7 +29,7 @@ def get_USBPort_name():
     name=None
     for i in range(200):
         try:
-            ser=serial.Serial('/dev/ttyUSB%i'%i,115200,timeout=1)
+            ser=serial.Serial('/dev/ttyAMA%i'%i,115200,timeout=1)
             name=ser.name
             ser.close()
             break
@@ -51,12 +51,12 @@ def getVol():
 
 
 def play_by_number(number):
-    try:
-        resp=urllib2.urlopen('http://192.168.13.31:8080/play_number/%i'%number)
+    #try:
+        resp=urllib2.urlopen('http://192.168.13.13:8080/play_number/%i'%number)
         name=resp.readline().decode()
         print(number,name)
-    except:
-        pass
+    #except:
+    #    pass
 
 
 #play_by_number(3)
@@ -124,6 +124,7 @@ while True:
 
 
     if newDail and ((datetime.datetime.now()-last_number_time).total_seconds()>dail_timeout):
+        print('play number%s'%number)
         play_by_number(number)
         number=0
         newDail=False

@@ -81,15 +81,15 @@ def remove_number(number):
 
 @app.route('/set_number',methods=['POST'])
 def set_number():
-    try:
+    #try:
         name=request.form['playlist_input']
         number=int(request.form['number_input'])
-        print number,name
+        #print number,name
         telefonBuch[number]=name
         save_to_pickle()
-    except:
-        pass
-    return app.send_static_file('index.html')
+    #except:
+    #    pass
+        return app.send_static_file('index.html')
 
 
 @app.route('/play_number/<number>')

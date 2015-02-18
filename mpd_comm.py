@@ -43,7 +43,7 @@ def play_playlist(name):
     if name == 'Pierre':
         client.shuffle()
 
-    client.setvol(50)    
+    #client.setvol(50)    
     client.play()
     client.disconnect()
     return

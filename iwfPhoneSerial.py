@@ -103,15 +103,32 @@ while True:
             actionTime=True
             lastAction=datetime.datetime.now()
 
-            if dir=="+":
-                changeVol=+5
-            elif dir=="-":
-                changeVol=-5
-            vol=vol+changeVol
-            try:
-                client.setvol(vol)
-            except:
-                print('setting volume failed')
+            if dir=="+" or dir=="-":
+                if dir=="+":
+                    changeVol=+5
+                elif dir=="-":
+                    changeVol=-5
+                vol=vol+changeVol
+                try:
+                    client.setvol(vol)
+                except:
+                    print('setting volume failed')
+            elif dir=="pushed":
+                try:
+                    client.pause()
+                except:
+                    print('pause failed')
+            elif dir=="holded":
+                try:
+                    client.seekcur(0)
+                except:
+                    print('backseek failed')
+            elif dir=="double":
+                try:
+                    client.next()
+                except:
+                    print('next failed')
+
 
 
         if line.split('.')[0]=='tel':

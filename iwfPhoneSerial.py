@@ -1,4 +1,5 @@
 #!/root/PhoneBookProject/venv/bin/python
+# -*- coding: utf-8 -*-
 
 __author__ = 'peterb'
 
@@ -29,7 +30,7 @@ def get_USBPort_name():
     name=None
     for i in range(200):
         try:
-            ser=serial.Serial('/dev/ttyUSB%i'%i,115200,timeout=1)
+            ser=serial.Serial('/dev/ttyAMA%i'%i,115200,timeout=1)
             name=ser.name
             ser.close()
             break
@@ -51,12 +52,12 @@ def getVol():
 
 
 def play_by_number(number):
-    try:
-        resp=urllib2.urlopen('http://192.168.13.31:8080/play_number/%i'%number)
+    #try:
+        resp=urllib2.urlopen('http://192.168.13.13:8080/play_number/%i'%number)
         name=resp.readline().decode()
         print(number,name)
-    except:
-        pass
+    #except:
+    #    pass
 
 
 #play_by_number(3)
@@ -92,9 +93,13 @@ while True:
         vol=getVol()
     if (datetime.datetime.now()-lastAction).total_seconds()>LOST_ACTION_TIME:
         actionTime=False
-    line=ser.readline()
-    line=line.decode()
-    line=line.strip()
+    try:
+        line=ser.readline()
+        line=line.decode()
+        line=line.strip()
+    except:
+        print('serial read error')
+
     
     if line!="":
         print(line)
@@ -103,27 +108,48 @@ while True:
             actionTime=True
             lastAction=datetime.datetime.now()
 
-            if dir=="+":
-                changeVol=+5
-            elif dir=="-":
-                changeVol=-5
-            vol=vol+changeVol
-            try:
-                client.setvol(vol)
-            except:
-                print('setting volume failed')
+            if dir=="+" or dir=="-":
+                if dir=="+":
+                    changeVol=+5
+                elif dir=="-":
+                    changeVol=-5
+                vol=vol+changeVol
+                try:
+                    client.setvol(vol)
+                except:
+                    print('setting volume failed')
+            elif dir=="p":
+                try:
+                    client.pause()
+                except:
+                    print('pause failed')
+            elif dir=="h":
+                try:
+                    client.seekcur(0)
+                except:
+                    print('backseek failed')
+            elif dir=="d":
+                try:
+                    client.next()
+                except:
+                    print('next failed')
+
 
 
         if line.split('.')[0]=='tel':
-            new_number=line.split('.')[1]
-            new_number=int(new_number)
-            last_number_time=datetime.datetime.now()
-            number=number*10+new_number
-            print(number)
-            newDail=True
+            try:
+                new_number=line.split('.')[1]
+                new_number=int(new_number)
+                last_number_time=datetime.datetime.now()
+                number=number*10+new_number
+                print(number)
+                newDail=True
+            except:
+                print(line)
 
 
     if newDail and ((datetime.datetime.now()-last_number_time).total_seconds()>dail_timeout):
+        print('play number%s'%number)
         play_by_number(number)
         number=0
         newDail=False

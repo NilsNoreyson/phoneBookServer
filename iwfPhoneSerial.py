@@ -99,6 +99,7 @@ while True:
         line=line.strip()
     except:
         print('serial read error')
+
     
     if line!="":
         print(line)
@@ -117,17 +118,17 @@ while True:
                     client.setvol(vol)
                 except:
                     print('setting volume failed')
-            elif dir=="pushed":
+            elif dir=="p":
                 try:
                     client.pause()
                 except:
                     print('pause failed')
-            elif dir=="holded":
+            elif dir=="h":
                 try:
                     client.seekcur(0)
                 except:
                     print('backseek failed')
-            elif dir=="double":
+            elif dir=="d":
                 try:
                     client.next()
                 except:

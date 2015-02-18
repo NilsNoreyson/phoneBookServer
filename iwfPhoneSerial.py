@@ -1,4 +1,5 @@
 #!/root/PhoneBookProject/venv/bin/python
+# -*- coding: utf-8 -*-
 
 __author__ = 'peterb'
 
@@ -92,9 +93,12 @@ while True:
         vol=getVol()
     if (datetime.datetime.now()-lastAction).total_seconds()>LOST_ACTION_TIME:
         actionTime=False
-    line=ser.readline()
-    line=line.decode()
-    line=line.strip()
+    try:
+        line=ser.readline()
+        line=line.decode()
+        line=line.strip()
+    except:
+        print('serial read error')
     
     if line!="":
         print(line)
@@ -132,12 +136,15 @@ while True:
 
 
         if line.split('.')[0]=='tel':
-            new_number=line.split('.')[1]
-            new_number=int(new_number)
-            last_number_time=datetime.datetime.now()
-            number=number*10+new_number
-            print(number)
-            newDail=True
+            try:
+                new_number=line.split('.')[1]
+                new_number=int(new_number)
+                last_number_time=datetime.datetime.now()
+                number=number*10+new_number
+                print(number)
+                newDail=True
+            except:
+                print(line)
 
 
     if newDail and ((datetime.datetime.now()-last_number_time).total_seconds()>dail_timeout):

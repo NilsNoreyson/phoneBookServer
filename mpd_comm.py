@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 __author__ = 'peterb'
 
 import serial
@@ -37,6 +39,9 @@ def play_playlist(name):
     if playlist_exists(name):
         client.load(name)
     spotify_lists = get_spotify_playlists()
+    name = name.encode('utf-8')
+    print name
+    print spotify_lists
     if name in spotify_lists:
         add_spotify_directory(name)
     time.sleep(1)

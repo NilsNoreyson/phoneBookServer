@@ -90,7 +90,7 @@ def remove_number(number):
 
 @app.route('/set_number',methods=['POST'])
 def set_number():
-    #try:
+    try:
         name=request.form['playlist_input']
         number=int(request.form['number_input'])
         #shuffle=request.form['shuffle']

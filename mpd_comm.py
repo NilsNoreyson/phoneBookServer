@@ -99,23 +99,30 @@ def add_spotify_directory(name):
     client.idletimeout = None
     client.connect(mopidyAddress,mopidyPort)
     client.password('IlPits2013')
-    client.add('Spotify/{name:s}'.format(name=name))
+    foldername = 'Spotify/{name:s}'.format(name=name)
+
+    files = client.lsinfo(foldername)
+    files = [x['file'] for x in files]
+    files = sorted(files)
+    for f in files:
+        client.add(f)
+    #print(files)
     client.disconnect()
 
 
 if __name__=='__main__':
 
-    playlists=get_playlists_from_mpd()
-    print playlists
-    print('test' in playlists)
+    #playlists=get_playlists_from_mpd()
+    #print playlists
+    #print('test' in playlists)
     folders = get_spotify_playlists()
-    print(folders)
-    #add_spotify_directory(folders[0])
+    #print(folders)
+    add_spotify_directory('Pierre')
     #load_playlist(just_namelist[7])
     # tracks=client.listplaylistinfo('schlafantonschlaf')
     #
     # for t in tracks:
     #     print t['title']
-    play_playlist('Pierre')
+    #play_playlist('Pierre')
 
 

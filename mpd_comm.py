@@ -84,9 +84,10 @@ def get_spotify_playlists():
     client.connect(mopidyAddress,mopidyPort)
     client.password('IlPits2013')
     folders = client.listall('Spotify')
+    #folders = client.lsinfo('Spotify')
     #folders = [f['directory'].split(r'/')[1] for f in folders if 'directory' in f.keys()]
-    folders = [f['directory'].split(r'/') for f in folders if 'directory' in f.keys()]
-    folders = [f[1] for f in folders if len(f)==2]
+    #folders = [f['directory'].split(r'/') for f in folders if 'directory' in f.keys()]
+    #folders = [f[1] for f in folders if len(f)==2]
     client.disconnect()
     return folders
 
@@ -117,12 +118,12 @@ if __name__=='__main__':
     #print('test' in playlists)
     folders = get_spotify_playlists()
     #print(folders)
-    add_spotify_directory('Pierre')
+    #add_spotify_directory('Pierre')
     #load_playlist(just_namelist[7])
     # tracks=client.listplaylistinfo('schlafantonschlaf')
     #
     # for t in tracks:
     #     print t['title']
     #play_playlist('Pierre')
-
+    print get_spotify_playlists()
 

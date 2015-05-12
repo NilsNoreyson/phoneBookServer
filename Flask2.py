@@ -41,11 +41,21 @@ def save_to_pickle():
 
 def load_phoneBook():
     telefonBuch=pickle.load( open( fileName+'.pkl', "rb" ) )
+    print telefonBuch.keys()
+    testKey=telefonBuch.keys()[0]
+    for k in telefonBuch.keys():
+        if isinstance(telefonBuch[k],dict):
+            print k
+            pass
+        else:
+            telefonBuch[k]={'name':telefonBuch[k]}
+        
     return telefonBuch
 
 
 #save_to_pickle()
 telefonBuch=load_phoneBook()
+print(telefonBuch)
 
 topPath=os.path.dirname(os.path.realpath(__file__))
 
@@ -61,7 +71,8 @@ def index():
 
 @app.route('/get_phonebook')
 def get_telefonBuch():
-    return "".join(["%i - %s<br/>"%(k,telefonBuch[k]) for k in sorted(telefonBuch.keys())])
+    print(telefonBuch)
+    return "".join(["%i - %s<br/>"%(k,telefonBuch[k]['name']) for k in sorted(telefonBuch.keys())])
 
     return jsonify(telefonBuch)
 
@@ -75,36 +86,41 @@ def remove_number(number):
             pass
     except:
         pass
+
     return app.send_static_file('index.html')
 
 
 
 @app.route('/set_number',methods=['POST'])
 def set_number():
-    try:
+    #try:
         name=request.form['playlist_input']
         number=int(request.form['number_input'])
-        print number,name
-        telefonBuch[number]=name
+        #shuffle=request.form['shuffle']
+        #print number,name
+        #print shuffle
+
+        telefonBuch[number]={'name':name}
         save_to_pickle()
-    except:
-        pass
-    return app.send_static_file('index.html')
+    #except:
+    #    print('set fail')
+    #    pass
+    	return app.send_static_file('index.html')
 
 
 @app.route('/play_number/<number>')
 def play_number(number):
         number=int(number)
         if telefonBuch.has_key(number):
-            name=telefonBuch[number]
-            name=name.encode('utf-8',errors='ignore')
-            print name
-            print number
-            try:
-                play_playlist(name)
-            except:
-                return('play fail')
-                pass
+            name=telefonBuch[number]['name']
+            #name=name.encode('utf-8',errors='ignore')
+            #print name
+            #print number
+            #try:
+            play_playlist(name)
+            #except:
+            #    return('play fail')
+            #    pass
             return name
 
 @app.route('/get_playlists')
@@ -115,7 +131,7 @@ def get_playlists():
     except:
         pass
 
-    print(just_namelist)
+    #print(just_namelist)
     return json.dumps(just_namelist)
 
 

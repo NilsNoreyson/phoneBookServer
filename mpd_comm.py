@@ -85,7 +85,7 @@ def get_spotify_playlists():
     client.password('IlPits2013')
     folders = client.listall('Spotify')
     #folders = client.lsinfo('Spotify')
-    #folders = [f['directory'].split(r'/')[1] for f in folders if 'directory' in f.keys()]
+    folders = [f['directory'].split(r'/')[1] for f in folders if 'directory' in f.keys()]
     #folders = [f['directory'].split(r'/') for f in folders if 'directory' in f.keys()]
     #folders = [f[1] for f in folders if len(f)==2]
     client.disconnect()

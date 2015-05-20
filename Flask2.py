@@ -14,7 +14,7 @@ import threading
 import pickle
 import datetime
 
-fileName="/opt/phonebook/phonebook"
+fileName="/media/phonebook/phonebook"
 
 telefonBuch={9: 'Toystore',
              3: 'anton',

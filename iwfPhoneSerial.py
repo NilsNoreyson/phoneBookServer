@@ -8,7 +8,7 @@ import datetime
 from mpd import MPDClient
 import urllib2
 
-mopidyAddress = '192.168.13.13'
+mopidyAddress = '0.0.0.0'
 mopidyPort = 6600
 
 client=MPDClient()
@@ -23,7 +23,6 @@ def reconnect():
     client.timeout = 10
     client.idletimeout = None
     client.connect(mopidyAddress,mopidyPort)
-    client.password('IlPits2013')
 
 
 def get_USBPort_name():
@@ -53,7 +52,7 @@ def getVol():
 
 def play_by_number(number):
     #try:
-        resp=urllib2.urlopen('http://192.168.13.13:8080/play_number/%i'%number)
+        resp=urllib2.urlopen('http://0.0.0.0:8080/play_number/%i'%number)
         name=resp.readline()
         print(number,name)
     #except:

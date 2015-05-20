@@ -1,67 +1,61 @@
-# -*- coding: utf-8 -*-
+import sys
 
-__author__ = 'peterb'
+reload(sys)
+sys.setdefaultencoding('utf8')
 
-import serial
-import datetime
 from mpd import MPDClient
-from flask import Flask,jsonify
-import time
 
-def get_playlists_from_mpd():
-    client=MPDClient()
-    mopidyAddress = '0.0.0.0'
-    mopidyPort = 6600
+import pickle
+fileName="/opt/phonebook/phonebook"
 
-    client.timeout = 10
-    client.idletimeout = None
-    client.connect(mopidyAddress,mopidyPort)
-    client.password('IlPits2013')
+def load_phoneBook():
+    telefonBuch=pickle.load( open( fileName+'.pkl', "rb" ) )
+    testKey=telefonBuch.keys()[0]
+    for k in telefonBuch.keys():
+        if isinstance(telefonBuch[k],dict):
+            pass
+        else:
+            telefonBuch[k]={'name':telefonBuch[k]}
 
-    playlists=client.listplaylists()
-    playlist_names=[p['playlist'] for p in playlists]
+    return telefonBuch
 
-    spotify_playlists = get_spotify_playlists()
-    playlists = playlist_names+spotify_playlists
-    client.disconnect()
-    return playlists
 
 def play_playlist(name):
     client=MPDClient()
-    mopidyAddress = '192.168.13.13'
+    mopidyAddress = 'localhost'
     mopidyPort = 6600
 
     client.timeout = 10
     client.idletimeout = None
     client.connect(mopidyAddress,mopidyPort)
-    client.password('IlPits2013')
+    #client.password('IlPits2013')
     client.clear()
     if playlist_exists(name):
         client.load(name)
     spotify_lists = get_spotify_playlists()
     name = name.encode('utf-8')
     print name
-    print spotify_lists
+    #print spotify_lists
     if name in spotify_lists:
         add_spotify_directory(name)
-    time.sleep(1)
+    #time.sleep(1)
     if name == 'Pierre':
         client.shuffle()
 
-    #client.setvol(50)    
-    client.play()
+    #client.setvol(50)
+    #client.play()
     client.disconnect()
     return
 
 def playlist_exists(name):
     client=MPDClient()
-    mopidyAddress = '192.168.13.13'
+    mopidyAddress = 'localhost'
     mopidyPort = 6600
 
     client.timeout = 10
     client.idletimeout = None
     client.connect(mopidyAddress,mopidyPort)
-    client.password('IlPits2013')
+    #client.password('IlPits2013')
 
     playlists = client.listplaylists()
 
@@ -69,9 +63,6 @@ def playlist_exists(name):
 
     client.disconnect()
     return name in p_names
-
-
-
 
 
 def get_spotify_playlists():
@@ -93,13 +84,13 @@ def get_spotify_playlists():
 
 def add_spotify_directory(name):
     client=MPDClient()
-    mopidyAddress = '192.168.13.13'
+    mopidyAddress = 'localhost'
     mopidyPort = 6600
 
     client.timeout = 10
     client.idletimeout = None
     client.connect(mopidyAddress,mopidyPort)
-    client.password('IlPits2013')
+    #client.password('IlPits2013')
     foldername = 'Spotify/{name:s}'.format(name=name)
 
     files = client.lsinfo(foldername)
@@ -111,19 +102,32 @@ def add_spotify_directory(name):
     client.disconnect()
 
 
-if __name__=='__main__':
+def print_files():
+    sync_files = open('sync_files.txt','w')
+    client=MPDClient()
+    mopidyAddress = 'localhost'
+    mopidyPort = 6600
 
-    #playlists=get_playlists_from_mpd()
-    #print playlists
-    #print('test' in playlists)
-    folders = get_spotify_playlists()
-    #print(folders)
-    #add_spotify_directory('Pierre')
-    #load_playlist(just_namelist[7])
-    # tracks=client.listplaylistinfo('schlafantonschlaf')
-    #
-    # for t in tracks:
-    #     print t['title']
-    #play_playlist('Pierre')
-    print get_spotify_playlists()
+    client.timeout = 10
+    client.idletimeout = None
+    client.connect(mopidyAddress,mopidyPort)
+    #client.password('IlPits2013')
+    files = client.playlistinfo()
+#    files = client.lsinfo(foldername)
+    files = [x['file'] for x in files]
+    files = sorted(files)
+    for f in files:
+        sync_files.write(f+'\n')
+        print f
+    sync_files.close()
+    #print(files)
+    client.disconnect()
+
+
+
+phone_book = load_phoneBook()
+
+for entry in phone_book.values():
+    play_playlist(entry['name'])
+    print_files()
 

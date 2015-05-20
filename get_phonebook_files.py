@@ -2,12 +2,13 @@ import sys
 
 reload(sys)
 sys.setdefaultencoding('utf8')
+import os
 
 from mpd import MPDClient
 
 import pickle
-fileName="/media/satellite/phonebook"
-
+fileName="/media/satellite_mpds/phonebook/phonebook"
+music_dir = '/media/music/'
 def load_phoneBook():
     telefonBuch=pickle.load( open( fileName+'.pkl', "rb" ) )
     testKey=telefonBuch.keys()[0]
@@ -117,8 +118,17 @@ def print_files():
     files = [x['file'] for x in files]
     files = sorted(files)
     for f in files:
-        sync_files.write(f+'\n')
-        print f
+
+        real_path=os.path.join(music_dir,f)
+        if os.path.exists(real_path):
+            if os.path.islink(real_path):
+                target_path = os.readlink(real_path)
+                abs_target_path = os.path.realpath(real_path)
+                target_path_rel_to_music_dir = os.path.relpath(abs_target_path, music_dir)
+                print target_path_rel_to_music_dir
+                sync_files.write(target_path_rel_to_music_dir+'\n')
+            sync_files.write(f+'\n')
+            print f
     sync_files.close()
     #print(files)
     client.disconnect()

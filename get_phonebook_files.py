@@ -6,7 +6,7 @@ sys.setdefaultencoding('utf8')
 from mpd import MPDClient
 
 import pickle
-fileName="/opt/phonebook/phonebook"
+fileName="/media/satellite/phonebook"
 
 def load_phoneBook():
     telefonBuch=pickle.load( open( fileName+'.pkl', "rb" ) )
@@ -67,13 +67,13 @@ def playlist_exists(name):
 
 def get_spotify_playlists():
     client=MPDClient()
-    mopidyAddress = '192.168.13.13'
+    mopidyAddress = '0.0.0.0'
     mopidyPort = 6600
 
     client.timeout = 10
     client.idletimeout = None
     client.connect(mopidyAddress,mopidyPort)
-    client.password('IlPits2013')
+    #client.password('IlPits2013')
     folders = client.listall('Spotify')
     #folders = client.lsinfo('Spotify')
     folders = [f['directory'].split(r'/')[1] for f in folders if 'directory' in f.keys()]
@@ -103,7 +103,7 @@ def add_spotify_directory(name):
 
 
 def print_files():
-    sync_files = open('sync_files.txt','w')
+    sync_files = open('/media/satellite_mpds/files2sync.txt','w')
     client=MPDClient()
     mopidyAddress = 'localhost'
     mopidyPort = 6600

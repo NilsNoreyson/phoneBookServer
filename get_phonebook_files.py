@@ -104,7 +104,7 @@ def add_spotify_directory(name):
 
 
 def print_files():
-    sync_files = open('/media/satellite_mpds/files2sync.txt','w')
+    sync_files = open('/media/satellite_mpds/files2sync.txt','a')
     client=MPDClient()
     mopidyAddress = 'localhost'
     mopidyPort = 6600
@@ -117,8 +117,8 @@ def print_files():
 #    files = client.lsinfo(foldername)
     files = [x['file'] for x in files]
     files = sorted(files)
+    outfiles=[]
     for f in files:
-
         real_path=os.path.join(music_dir,f)
         if os.path.exists(real_path):
             if os.path.islink(real_path):
@@ -127,17 +127,24 @@ def print_files():
                 target_path_rel_to_music_dir = os.path.relpath(abs_target_path, music_dir)
                 print target_path_rel_to_music_dir
                 sync_files.write(target_path_rel_to_music_dir+'\n')
+                outfiles.append(target_path_rel_to_music_dir)
             sync_files.write(f+'\n')
+            outfiles.append(f)
+            print('ADDED')
             print f
     sync_files.close()
     #print(files)
     client.disconnect()
+#    print(outfiles)
 
 
 
 phone_book = load_phoneBook()
+sync_files = open('/media/satellite_mpds/files2sync.txt','w')
+sync_files.close()
 
 for entry in phone_book.values():
+
     play_playlist(entry['name'])
     print_files()
 

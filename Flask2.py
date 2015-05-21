@@ -114,8 +114,8 @@ def play_number(number):
         number=int(number)
         if telefonBuch.has_key(number):
             name=telefonBuch[number]['name']
-            #name=name.encode('utf-8',errors='ignore')
-            #print name
+            name=name.encode('utf-8',errors='ignore')
+            print name
             #print number
             #try:
             play_playlist(name)

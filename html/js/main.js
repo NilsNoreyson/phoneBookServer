@@ -25,3 +25,18 @@ $.getJSON( "get_playlists", function( data ) {
              $("#phonebook").html(data);
            }
     });
+
+
+function selected_item() {
+    var selectedValue = document.getElementById('playlist_select').value;
+    console.log(selectedValue);
+    $.getJSON( "ls_mpd/"+selectedValue, function( data ) {
+        console.log(data)
+        fill_playlist_selection(data);
+    });
+}
+
+    $.getJSON( "ls_mpd/"+'Spotify', function( data ) {
+        console.log(data.length)
+        fill_playlist_selection(data);
+    });

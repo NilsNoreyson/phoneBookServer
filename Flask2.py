@@ -124,13 +124,26 @@ def play_number(number):
             #    pass
             return name
 
-@app.route('/get_playlists')
+@app.route('/get_playlists/')
 def get_playlists():
     global playlists
     try:
         just_namelist=get_playlists_from_mpd()
     except:
         pass
+
+    #print(just_namelist)
+    return json.dumps(just_namelist)
+
+
+@app.route('/ls_mpd/<name>')
+def ls_mpd(name):
+
+    global playlists
+#    try:
+    just_namelist=get_ls(name)
+#    except:
+#        pass
 
     #print(just_namelist)
     return json.dumps(just_namelist)

@@ -80,6 +80,28 @@ def get_spotify_playlists():
     client.disconnect()
     return folders
 
+
+
+def get_ls(folder):
+    client=get_connected()
+
+    folders = client.listall(folder)
+    #folders = client.lsinfo('Spotify')
+    #folders = [f['directory'].split(r'/')[1] for f in folders if 'directory' in f.keys()]
+
+    parent_dir_name = folder+r'/'
+    print parent_dir_name
+
+    folders = [os.path.basename(f['directory']) for f in folders if ('directory' in f.keys()) ]
+    print folders.remove(folder)
+    #folders = [f for f in folder if f.startswith()]
+
+    print folders
+
+    #folders = [f[1] for f in folders if len(f)==2]
+    client.disconnect()
+    return folders
+
 def add_spotify_directory(name):
     client=get_connected()
 

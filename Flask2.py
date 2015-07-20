@@ -114,8 +114,8 @@ def play_number(number):
         number=int(number)
         if telefonBuch.has_key(number):
             name=telefonBuch[number]['name']
-            name=name.encode('utf-8',errors='ignore')
-            print name
+            #name=name.encode('utf-8',errors='ignore')
+            #print name
             #print number
             #try:
             play_playlist(name)
@@ -136,15 +136,14 @@ def get_playlists():
     return json.dumps(just_namelist)
 
 
-@app.route('/ls_mpd/<name>')
-def ls_mpd(name):
+@app.route('/get_folder/<path:fullurl>')
+@app.route('/get_folder/')
+def get_folder(fullurl=''):
+    print fullurl
+    params = fullurl.split('/')
 
-    global playlists
-#    try:
-    just_namelist=get_ls(name)
-#    except:
-#        pass
-
+    print fullurl
+    just_namelist=get_folder_from_mpd(fullurl)
     #print(just_namelist)
     return json.dumps(just_namelist)
 

@@ -28,8 +28,9 @@ def get_playlists_from_mpd():
     playlists=client.listplaylists()
     playlist_names=[p['playlist'] for p in playlists]
 
-    spotify_playlists = get_spotify_playlists()
-    playlists = playlist_names+spotify_playlists
+#
+#     spotify_playlists = get_spotify_playlists()
+#    playlists = playlist_names+spotify_playlists
 
     client.disconnect()
     return playlists
@@ -41,8 +42,8 @@ def play_playlist(name):
     if playlist_exists(name):
         client.load(name)
     spotify_lists = get_spotify_playlists()
-    #name = name.encode('utf-8')
-    #print name
+    name = name.encode('utf-8')
+    print name
     print spotify_lists
     if name in spotify_lists:
         add_spotify_directory(name)
@@ -66,6 +67,19 @@ def playlist_exists(name):
     return name in p_names
 
 
+def get_folder_from_mpd(folder=''):
+    client=get_connected()
+
+    folders = client.lsinfo(folder)
+    print folders
+    #folders = client.lsinfo('Spotify')
+    #
+    folders = [f['directory'] for f in folders if 'directory' in f.keys()]
+    folders = [{'name':os.path.basename(f),'parent':os.path.dirname(f), 'full':f} for f in folders]
+    #folders = [f['directory'].split(r'/') for f in folders if 'directory' in f.keys()]
+    #folders = [f[1] for f in folders if len(f)==2]
+    client.disconnect()
+    return folders
 
 
 
@@ -74,30 +88,8 @@ def get_spotify_playlists():
 
     folders = client.listall('Spotify')
     #folders = client.lsinfo('Spotify')
-    #folders = [f['directory'].split(r'/')[1] for f in folders if 'directory' in f.keys()]
-    folders = [os.path.basename(f['directory']) for f in folders if 'directory' in f.keys()]
-    #folders = [f[1] for f in folders if len(f)==2]
-    client.disconnect()
-    return folders
-
-
-
-def get_ls(folder):
-    client=get_connected()
-
-    folders = client.listall(folder)
-    #folders = client.lsinfo('Spotify')
-    #folders = [f['directory'].split(r'/')[1] for f in folders if 'directory' in f.keys()]
-
-    parent_dir_name = folder+r'/'
-    print parent_dir_name
-
-    folders = [os.path.basename(f['directory']) for f in folders if ('directory' in f.keys()) ]
-    print folders.remove(folder)
-    #folders = [f for f in folder if f.startswith()]
-
-    print folders
-
+    folders = [f['directory'].split(r'/')[1] for f in folders if 'directory' in f.keys()]
+    #folders = [f['directory'].split(r'/') for f in folders if 'directory' in f.keys()]
     #folders = [f[1] for f in folders if len(f)==2]
     client.disconnect()
     return folders
@@ -129,6 +121,6 @@ if __name__=='__main__':
     #
     # for t in tracks:
     #     print t['title']
-    play_playlist('Pierre')
+    #play_playlist('Pierre')
     print get_spotify_playlists()
 

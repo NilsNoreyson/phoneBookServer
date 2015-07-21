@@ -26,11 +26,11 @@ def get_playlists_from_mpd():
     client=get_connected()
 
     playlists=client.listplaylists()
+    folder_above = [{'name':'..','parent':'','above': '', 'full':'', 'action_type':None}]
     playlist_names=[p['playlist'] for p in playlists]
 
-#
-#     spotify_playlists = get_spotify_playlists()
-#    playlists = playlist_names+spotify_playlists
+    playlists = folder_above + [{'name':p,'parent':'Playlists','above':'', 'full':p, 'action_type':'load'} for p in playlist_names]
+
 
     client.disconnect()
     return playlists
@@ -68,18 +68,44 @@ def playlist_exists(name):
 
 
 def get_folder_from_mpd(folder=''):
+    print folder
+    if folder=='':
+        folders = [{'name':'..','parent':'','above': '', 'full':''},{'name':'Playlists','parent':'','above': '','action_type':None, 'full':'Playlists'}, {'name':'Folders','parent':'','above': '', 'action_type':None, 'full':'Folders'}]
+        return folders
+    elif folder=='Folders':
+        parent_folder = ''
+        folder=''
+    elif folder == 'Playlists':
+        return get_playlists_from_mpd()
+
+    else:
+        parent_folder = os.path.dirname(folder)
+
+
+
     client=get_connected()
 
     folders = client.lsinfo(folder)
     print folders
     #folders = client.lsinfo('Spotify')
     #
-    folders = [f['directory'] for f in folders if 'directory' in f.keys()]
-    folders = [{'name':os.path.basename(f),'parent':os.path.dirname(f), 'full':f} for f in folders]
-    #folders = [f['directory'].split(r'/') for f in folders if 'directory' in f.keys()]
-    #folders = [f[1] for f in folders if len(f)==2]
+    dict_names = [f['directory'] for f in folders if 'directory' in f.keys()]
+    file_names = [f['file'] for f in folders if 'file' in f.keys()]
+    all_data = dict_names+file_names
+    print folders
+    folder_above = [{'name':'..','parent':parent_folder,'above': parent_folder, 'full':parent_folder, 'action_type':None}]
+
+    folders_names = [{'name':os.path.basename(f),'parent':os.path.dirname(f),'above':os.path.dirname(os.path.dirname(f)), 'full':f, 'action_type':'add'} for f in all_data]
+
+    if folders_names:
+        folder_above.extend(folders_names)
+
+
+
+
     client.disconnect()
-    return folders
+
+    return folder_above
 
 
 

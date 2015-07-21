@@ -13,6 +13,18 @@
     right: 50px;
     width: 600px;
     border: 3px solid #8AC007;
+
+
+}
+
+#folder_select_container{
+    position: static;
+    top: 100px;
+    right: 50px;
+    width: 600px;
+    border: 3px solid #8AC007;
+
+
 }
 
 #action_list { list-style-type: none; margin: 0; padding: 0; width: 90%; }

@@ -9,7 +9,7 @@ from flask import Flask,jsonify
 import time
 import os
 
-def get_connected(addr = '0.0.0.0', port = 6600, password = None):
+def get_connected(addr = '192.168.13.50', port = 6642, password = None):
     client=MPDClient()
     mopidyAddress = addr
     mopidyPort = port
@@ -41,12 +41,12 @@ def play_playlist(name):
 
     if playlist_exists(name):
         client.load(name)
-    spotify_lists = get_spotify_playlists()
-    name = name.encode('utf-8')
-    print name
-    print spotify_lists
-    if name in spotify_lists:
-        add_spotify_directory(name)
+    # spotify_lists = get_spotify_playlists()
+    # name = name.encode('utf-8')
+    # print name
+    # print spotify_lists
+    # if name in spotify_lists:
+    #     add_spotify_directory(name)
     time.sleep(1)
     if name == 'Pierre':
         client.shuffle()
@@ -112,9 +112,12 @@ def get_folder_from_mpd(folder=''):
 def get_spotify_playlists():
     client=get_connected()
 
-    folders = client.listall('Spotify')
-    #folders = client.lsinfo('Spotify')
-    folders = [f['directory'].split(r'/')[1] for f in folders if 'directory' in f.keys()]
+    #folders = client.listall('Spotify') ##old way no mopidy
+    #folders = client.listall('Files/Spotify')
+    folders = client.lsinfo('Files/Spotify')
+    print folders
+    #folders = [f['directory'].split(r'/')[1] for f in folders if 'directory' in f.keys()] #old way no mopidy
+    folders = [f['directory'].split(r'/')[2] for f in folders if 'directory' in f.keys()]
     #folders = [f['directory'].split(r'/') for f in folders if 'directory' in f.keys()]
     #folders = [f[1] for f in folders if len(f)==2]
     client.disconnect()
@@ -123,8 +126,9 @@ def get_spotify_playlists():
 def add_spotify_directory(name):
     client=get_connected()
 
-    foldername = 'Spotify/{name:s}'.format(name=name)
-
+    foldername = 'Spotify/{name:s}'.format(name=name) ##old way without mopidy
+    foldername = 'Files/Spotify/{name:s}'.format(name=name)
+    print foldername
     files = client.lsinfo(foldername)
     files = [x['file'] for x in files]
     files = sorted(files)
@@ -147,6 +151,6 @@ if __name__=='__main__':
     #
     # for t in tracks:
     #     print t['title']
-    #play_playlist('Pierre')
+    play_playlist('00-13')
     print get_spotify_playlists()
 

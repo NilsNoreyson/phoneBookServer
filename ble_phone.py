@@ -3,6 +3,8 @@ import time
 import re
 import copy
 from threading import Thread
+import Queue
+
 
 class BTLE_PHONE:
     def __init__(self, device_mac):
@@ -12,13 +14,17 @@ class BTLE_PHONE:
         self.do_scan = True
         self.scan_thread.start()
 
+        self.queue = Queue.Queue()
+
+
     def stop_thread(self):
         self.do_scan = False
         self.scan_thread.join()
 
     def get_last_command(self):
-        last_cmd = copy.copy(self.last_command)
-        self.last_command = None
+        #last_cmd = copy.copy(self.last_command)
+        last_cmd = self.queue.get()
+        #self.last_command = None
         return last_cmd
 
     def check_dev(self):
@@ -38,12 +44,18 @@ class BTLE_PHONE:
 
     def check_phone_signals(self):
         cmd = 'gatttool --device={0} -t random --char-read --uuid=2221 --listen'.format(self.device_mac)
+
+        print(cmd)
         arg = shlex.split(cmd)
         print(arg)
         data_old = [0,0,0]
         last_index = 0
         while self.do_scan:
-            out = subprocess.check_output(arg)
+            try:
+                out = subprocess.check_output(arg)
+            except:
+                out = ''
+                pass
             if 'value:' in out:
                 data = out.split('value:')[1]
                 data =  [int(d,16) for d in data.strip().split(' ')]
@@ -56,6 +68,7 @@ class BTLE_PHONE:
                         pass
                     else:
                         self.last_command = data
+                        self.queue.put(data)
                         last_index = data[2]
         return True
 
@@ -65,6 +78,6 @@ if __name__ == '__main__':
         out= ble.get_last_command()
         if out:
             print out
-        time.sleep(0.3)
+        time.sleep(0.1)
     # time.sleep(4)
     # ble.stop_thread()
